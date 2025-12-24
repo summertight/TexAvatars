@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
+  <!-- Replace the content tag with appropriate information -->
+  <meta name="description" content="Human Hair Reconstruction with Strand-Aligned 3D Gaussians">
+  <meta property="og:title" content="TexAvatars"/>
+  <meta property="og:description" content="Human Hair Reconstruction with Strand-Aligned 3D Gaussians"/>
+  <meta property="og:url" content="https://eth-ait.github.io/TexAvatars/"/>
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
+  <meta property="og:image" content="static/images/teaser.png" />
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+
+
+  <meta name="twitter:title" content="TexAvatars">
+  <meta name="twitter:description" content="Human Hair Reconstruction with Strand-Aligned 3D Gaussians">
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
+  <meta name="twitter:image" content="static/images/teaser.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- Keywords for your paper to be indexed by-->
+  <meta name="keywords" content="Computer Vision, Computer Graphics, Digital Humans">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <title>TexAvatars</title>
+  <!-- <link rel="icon" type="image/x-icon" href="static/images/scissors.png"> -->
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+  rel="stylesheet">
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
+
+  <!-- MathJax for LaTeX rendering -->
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+  <!-- <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+    <div class="navbar-menu">
+      <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+        <a class="navbar-item" href="https://egorzakharov.github.io">
+        <span class="icon">
+            <i class="fas fa-home"></i>
+        </span>
+        </a>
+  
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link">
+            More Research
+          </a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://samsunglabs.github.io/NeuralHaircut/">
+              Neural Haircut
+            </a>
+            <a class="navbar-item" href="https://haar.is.tue.mpg.de/">
+              HAAR
+            </a>
+          </div>
+        </div>
+      </div>
+  
+    </div>
+  </nav>   -->
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+
+            <h1 class="title is-1 publication-title"><span style="
+              background: linear-gradient(
+                90deg,
+                #081c24 0%,
+                #0b3a4a 35%,
+                #1bbfd3 100%
+              );
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
+              background-clip: text;
+              font-weight: 700;
+              letter-spacing: 0.4px;
+            ">
+                        <!-- <img src="./static/images/mesh.png" style="height:70px;"> -->
+              TexAvatars
+            </span>: Hybrid Texel-3D Representations for Stable Rigging of
+            Photorealistic Gaussian Head Avatars</h1>
+            <!-- <h1 class="title is-2 publication-title">Hybrid Texel-3D Representations for Stable Rigging of
+              Photorealistic Gaussian Head Avatars</h1> -->
+            <div class="is-size-5 publication-authors">
+              <!-- Paper authors -->
+              <span class="author-block">
+                <a href="https://leejesse.github.io/" target="_blank">Jaeseong lee</a><sup>1</sup>*,
+              </span>
+              <span class="author-block">
+                <a href="https://justin4ai.github.io/" target="_blank">Junyeong Ahn</a><sup>2</sup>*,
+              </span>
+              <span class="author-block">
+                <a href="https://keh0t0.github.io/" target="_blank">Taewoong Kang</a><sup>1</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://sites.google.com/site/jaegulchoo/" target="_blank">Jaegul Choo</a><sup>1</sup>
+              </span>
+            </div>
+            <div class="is-size-6 has-text-centered"
+            style="margin-top: 0.25rem; margin-bottom: 0.25rem; color: #666;">
+            * equal contribution
+            </div>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <sup>1</sup>KAIST AI</a>,
+                <sup>2</sup>Hanyang University</a>
+              </span>
+            <div class="is-size-5 publication-authors logo-row">
+
+              <img src="static/images/kaist_ai_icon.png" alt="KAIST AI Logo" />
+              <img src="static/images/hanyang_icon.png" alt="HYU Logo" />
+            </div>  
+            <br >
+            3DV 2026
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <!-- Arxiv PDF link -->
+                <span class="link-block">
+                  <a href="" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span>Paper</span>
+                  </a>
+                </span>
+
+                <!-- Github link -->
+                <span class="link-block">
+                  <a href="" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+
+                <!-- ArXiv abstract Link -->
+                <span class="link-block">
+                  <a href="" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>arXiv</span>
+                  </a>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Teaser video-->
+  <section class="hero teaser">
+    <div class="container is-max-desktop">
+      <div class="hero-body">
+        <video poster="" id="tree" autoplay controls muted loop height="100%">
+          <!-- Your video here -->
+          <source src="static/videos/texavatars_project_teaser_final.mp4"
+          type="video/mp4">
+        </video>
+        <h2 class="subtitle has-text-centered">
+          <strong>TexAvatars</strong> reconstructs high-quality, real-time animatable 3D head avatars from multi-view images. Our key insight is a mathematically simple yet well-bounded deformation strategy using Jacobian transformations, ensuring stable training and robust extrapolation to extreme expressions.
+        </h2>
+      </div>
+    </div>
+  </section>
+  <!-- End teaser video -->
+
+  <!-- Paper abstract -->
+  <section class="section hero is-light">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              Constructing drivable and photorealistic 3D head
+              avatars has become a central task in AR/XR, enabling immersive
+              and expressive user experiences. With the emergence
+              of high-fidelity, efficient representations such as 3D
+              Gaussians, recent works have pushed toward ultra-detailed
+              head avatars. Existing approaches typically fall into two
+              categories: rule-based analytic rigging or neural networkbased
+              deformation fields. While effective in constrained
+              settings, both approaches often fail to generalize to unseen
+              expressions and poses—particularly in extreme reenactment
+              scenarios. Other methods constrain Gaussians to
+              the global texel space of 3DMMs to reduce rendering complexity.
+              However, these texel-based avatars tend to underutilize
+              the underlying mesh structure. They apply minimal analytic deformation and rely heavily on neural regressors
+              and heuristic regularization in UV space, which
+              weakens geometric consistency and limits extrapolation to
+              complex, out-of-distribution deformations. To address these
+              limitations, we introduce TexAvatars, a hybrid avatar representation
+              that combines the explicit geometric grounding
+              of analytic rigging with the spatial continuity of texel
+              space. Our approach predicts local geometric attributes in
+              UV space via CNNs, but drives 3D deformation through
+              mesh-aware Jacobians, enabling smooth and semantically
+              meaningful transitions across triangle boundaries. This
+              hybrid design separates semantic modeling from geometric
+              control, resulting in improved generalization, interpretability,
+              and stability. Furthermore, TexAvatars captures
+              fine-grained expression effects—including muscle-induced
+              wrinkles, glabellar lines, and realistic mouth cavity geometry—
+              with high fidelity. Our method achieves state-of-theart
+              performance under extreme pose and expression variations,
+              demonstrating strong generalization in challenging
+              head reenactment settings.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End paper abstract -->
+
+
+  <!-- Main idea 1 -->
+  <section class="hero is-small">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <h2 class="title is-3">Main idea 1: Bounded Gradient via Jacobian Transformation</h2>
+
+        <!-- Analysis: Prior Methods vs. Ours -->
+        <div class="content" style="margin-top: 1.5rem; margin-bottom: 1rem;">
+          <p style="font-size: 0.95rem;">
+            where \(G\) denotes Gaussian attributes, subscripts \(d\), \(c\), and \(\ell\) denote <em>deformed</em>, <em>canonical</em>, and <em>local</em> respectively,
+            \(\mathcal{L}\) is the image-space training loss, \(f_\theta\) is the Gaussian texel map decoder with parameters \(\theta\),
+            \(\mathbf{T}\) is the analytic mesh-based transformation, and \(\mathbf{J}\) is its Jacobian.
+          </p>
+        </div>
+        <div class="columns is-centered" style="margin-top: 1rem;">
+          <div class="column is-half">
+            <div class="box" style="background-color: #fff3f3;">
+              <h4 class="title is-5 has-text-centered">Prior Methods</h4>
+              <p class="has-text-centered" style="font-size: 1.1rem;">
+                \( G_d = G_c + \Delta G \)
+              </p>
+              <p class="has-text-centered" style="margin-top: 1rem;">
+                \( \nabla_\theta \mathcal{L} = \frac{\partial \mathcal{L}}{\partial G_d} \frac{\partial G_d}{\partial \theta} = \frac{\partial \mathcal{L}}{\partial G_d} \frac{\partial \Delta G}{\partial \theta} \)
+              </p>
+              <p class="has-text-justified" style="margin-top: 1rem; font-size: 0.9rem;">
+                The gradient directly scales with the magnitude of global-space displacements \(\Delta G\), which can become <strong>arbitrarily large</strong> under extreme poses and expressions. This leads to unstable training and requires heuristic regularizers (e.g., penalizing scale or position offsets) that reduce expressiveness.
+              </p>
+              <p class="has-text-centered" style="margin-top: 0.75rem;">
+                <span class="tag is-danger is-medium">Unbounded Gradients</span>
+                <span class="tag is-warning is-medium" style="margin-left: 0.5rem;">Poor Extrapolation</span>
+              </p>
+            </div>
+          </div>
+          <div class="column is-half">
+            <div class="box" style="background-color: #f3fff3;">
+              <h4 class="title is-5 has-text-centered">Ours (TexAvatars)</h4>
+              <p class="has-text-centered" style="font-size: 1.1rem;">
+                \( G_d = \mathbf{T}(G_\ell) \), where \( G_\ell = f_\theta(x) \)
+              </p>
+              <p class="has-text-centered" style="margin-top: 1rem;">
+                \( \nabla_\theta \mathcal{L} = \frac{\partial \mathcal{L}}{\partial G_d} \underbrace{\frac{\partial G_d}{\partial G_\ell}}_{\mathbf{J}} \frac{\partial G_\ell}{\partial \theta} \)
+              </p>
+              <p class="has-text-justified" style="margin-top: 1rem; font-size: 0.9rem;">
+                Since face-level deformations are dominated by rotations with only mild shear or scaling, \(\mathbf{J}\) is near-isometric with \(\|\mathbf{J}\| \leq C\). This ensures <strong>bounded gradients</strong>:
+              </p>
+              <p class="has-text-centered" style="margin-top: 0.5rem;">
+                \(\|\nabla_\theta \mathcal{L}\| \leq C \left\| \frac{\partial \mathcal{L}}{\partial G_d} \right\| \left\| \frac{\partial G_\ell}{\partial \theta} \right\|\)
+              </p>
+              <p class="has-text-centered" style="margin-top: 0.75rem;">
+                <span class="tag is-success is-medium">Stable Training</span>
+                <span class="tag is-info is-medium" style="margin-left: 0.5rem;">Better Extrapolation</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Example figure -->
+        <h4 class="title is-5" style="margin-top: 2rem; margin-bottom: 1rem;">Example: Comparison with RGCA</h4>
+        <div class="row" style="display: flex; justify-content: center;">
+          <div class="col-lg-16 text-white" style="text-align: center;">
+            <img class="img-fluid mb-3" src="static/images/fig_tex_vs_rgca_final0819.png" alt="Comparison of TexAvatars vs Prior Methods" style="width: 90%;" >
+          </div>
+        </div>
+        <div class="content has-text-justified" style="margin-top: 1rem;">
+          <p>
+            <a href="https://shunsukesaito.github.io/rgca/" target="_blank"><strong>RGCA</strong></a> stabilizes training by scaling the tracked mesh large so that offsets remain small. However, under strong stretching or out-of-distribution expressions, the tiny offset budget leads to <strong>dotted artifacts</strong>. In contrast, <strong>TexAvatars</strong> maintains stable, artifact-free rendering even under extreme deformations.
+          </p>
+        </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- Main idea 2 -->
+  <section class="hero is-small">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <h2 class="title is-3">Main idea 2: Quasi-Phong Jacobian Field</h2>
+        <div class="row" style="display: flex; justify-content: center;">
+          <div class="col-lg-16 text-white" style="text-align: center;">
+            <img class="img-fluid mb-3" src="static/images/texavatars_mainmethod.png" alt="" style="width: 75%;" >
+          </div>
+        </div>
+
+        <!-- Comparison boxes -->
+        <div class="columns is-centered" style="margin-top: 1.5rem;">
+          <div class="column is-half">
+            <div class="box" style="background-color: #fff3f3;">
+              <h4 class="title is-5 has-text-centered">Prior Methods</h4>
+              <p class="has-text-centered" style="font-size: 1.05rem;">
+                \( \boldsymbol{\mu} = \mathbf{J}_F \boldsymbol{\mu}^\ell + \mathbf{T}_F \)
+              </p>
+              <p class="has-text-justified" style="margin-top: 1rem; font-size: 0.9rem;">
+                Per-face Jacobians \(\mathbf{J}_F\) are <strong>piecewise-constant</strong>. Each triangle defines its frame independently, causing <strong>discontinuities at face boundaries</strong> when interpolating attributes across adjacent texels.
+              </p>
+              <p class="has-text-centered" style="margin-top: 0.75rem;">
+                <span class="tag is-danger is-medium">Discontinuous</span>
+                <span class="tag is-warning is-medium" style="margin-left: 0.5rem;">Boundary Artifacts</span>
+              </p>
+            </div>
+          </div>
+          <div class="column is-half">
+            <div class="box" style="background-color: #f3fff3;">
+              <h4 class="title is-5 has-text-centered">Ours (TexAvatars)</h4>
+              <p class="has-text-centered" style="font-size: 1.05rem;">
+                \( \boldsymbol{\mu} = \text{GridSample}_{\text{lerp}}(\mathbf{J}_{uv} \boldsymbol{\mu}^\ell_{uv} + \mathbf{T}_{uv}) \)
+              </p>
+              <p class="has-text-justified" style="margin-top: 1rem; font-size: 0.9rem;">
+                We unwrap Jacobians into UV space and apply <strong>bilinear interpolation</strong>, blending across adjacent faces. This <em>Quasi-Phong Jacobian Field</em> yields <strong>smooth, continuous deformations</strong> analogous to Phong shading.
+              </p>
+              <p class="has-text-centered" style="margin-top: 0.75rem;">
+                <span class="tag is-success is-medium">Smooth Deformations</span>
+                <span class="tag is-info is-medium" style="margin-left: 0.5rem;">No Boundary Artifacts</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Example figure -->
+        <h4 class="title is-5" style="margin-top: 2rem; margin-bottom: 1rem;">Example: Effect of Global UV Sampling and Jacobian</h4>
+        <div class="row" style="display: flex; justify-content: center;">
+          <div class="col-lg-16 text-white" style="text-align: center;">
+            <img class="img-fluid mb-3" src="static/images/fig_abl_globalUV.png" alt="Ablation on Global UV Sampling and Jacobian" style="width: 90%;" >
+          </div>
+        </div>
+        <div class="content has-text-justified" style="margin-top: 1rem;">
+          <p>
+            Remapping mesh Jacobians to texel space enables smooth blending of attributes across triangle boundaries, eliminating discontinuity artifacts.
+          </p>
+        </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- Video carousel -->
+  <section class="hero is-small">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <h2 class="title is-3">Self-Reenactment</h2>
+        <div id="results-carousel" class="carousel results-carousel">
+          <div class="item item-video1">
+            <video poster="" id="video1" autoplay controls muted loop height="100%">
+              <!-- Your video file here -->
+              <source src="static/videos/074_074.mp4"
+              type="video/mp4">
+            </video>
+          </div>
+          <div class="item item-video2">
+            <video poster="" id="video2" autoplay controls muted loop height="100%">
+              <!-- Your video file here -->
+              <source src="static/videos/264_264.mp4"
+              type="video/mp4">
+            </video>
+          </div>
+          <div class="item item-video2">
+            <video poster="" id="video2" autoplay controls muted loop height="100%">
+              <!-- Your video file here -->
+              <source src="static/videos/304_304.mp4"
+              type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End video carousel -->
+
+  <!-- Video carousel -->
+  <section class="hero is-small">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <h2 class="title is-3">Cross-Reenactment</h2>
+        <div id="results-carousel" class="carousel results-carousel">
+          <div class="item item-video1">
+            <video poster="" id="video1" autoplay controls muted loop height="100%">
+              <!-- Your video file here -->
+              <source src="static/videos/264_104.mp4"
+              type="video/mp4">
+            </video>
+          </div>
+          <div class="item item-video2">
+            <video poster="" id="video2" autoplay controls muted loop height="100%">
+              <!-- Your video file here -->
+              <source src="static/videos/302_175.mp4"
+              type="video/mp4">
+            </video>
+          </div>
+          <div class="item item-video3">
+            <video poster="" id="video3" autoplay controls muted loop height="100%">\
+              <!-- Your video file here -->
+              <source src="static/videos/302_304.mp4"
+              type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End video carousel -->
+
+
+
+  <footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+
+          <p>
+            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+            You are free to borrow the source code of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Statcounter tracking code -->
+  
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SCPST0T02M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SCPST0T02M');
+</script>
+
+<!-- End of Statcounter Code -->
+
+</body>
+</html>
